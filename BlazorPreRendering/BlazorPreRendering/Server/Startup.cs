@@ -1,3 +1,5 @@
+using BlazorPreRendering.Server.Services;
+using BlazorPreRendering.Shared.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +30,7 @@ namespace BlazorPreRendering.Server
             services.AddRazorPages();
 
             services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:44363/") });
+            services.AddScoped<IWeatherForecastService, WeatherForecastService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
