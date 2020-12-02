@@ -31,6 +31,8 @@ namespace BlazorPreRendering.Server
 
             services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:44363/") });
             services.AddScoped<IWeatherForecastService, WeatherForecastService>();
+            services.AddHttpContextAccessor();
+            services.AddScoped<IPreRenderService, PreRenderService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

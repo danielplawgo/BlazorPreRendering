@@ -2,6 +2,7 @@
 @using BlazorPreRendering.Shared
 @using BlazorPreRendering.Shared.Services
 @inject IWeatherForecastService Service
+@inject IPreRenderService PreRenderService
 
 <h1>Weather forecast</h1>
 
@@ -41,7 +42,10 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Service.GetForecastAsync();
+        if (PreRenderService.IsPreRendering == false)
+        {
+            forecasts = await Service.GetForecastAsync();
+        }
     }
 
 }
